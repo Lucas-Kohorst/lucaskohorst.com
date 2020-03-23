@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bot on Lucas Kohorst</title>
+    <link>http://www.lucaskohorts.com/tags/bot/</link>
+    <description>Recent content in Bot on Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 08 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.lucaskohorts.com/tags/bot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create a Twitter Bot in Python Using Tweepy</title>
+      <link>http://www.lucaskohorts.com/posts/create-twitter-bot/</link>
+      <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/create-twitter-bot/</guid>
+      <description>With about 15% of Twitter being composed of bots, I wanted to try my hand at it. I googled how to create a Twitter bot and was brought to a cleanly laid out web app. It allowed you to create a bot that would like, follow, or retweet a tweet based on a keyword. The problem was that you could only create one bot for one function.
+So I decided to code a bot myself with Python and the Tweepy library.</description>
+    </item>
+    
+  </channel>
+</rss>

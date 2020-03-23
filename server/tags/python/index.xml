@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Lucas Kohorst</title>
+    <link>http://www.lucaskohorts.com/tags/python/</link>
+    <description>Recent content in Python on Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 09 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.lucaskohorts.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Predicting Stock Prices with Python</title>
+      <link>http://www.lucaskohorts.com/posts/stock-predictions/</link>
+      <pubDate>Fri, 09 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/stock-predictions/</guid>
+      <description>Investing in the stock market used to require a ton of capital and a broker that would take a cut from your earnings. Then Robinhood disrupted the industry allowing you to invest as little as $1 and avoid a broker altogether. Robinhood and apps like it have opened up investing to anyone with a connected device and gave non-investors the opportunity to profit from the newest tech start-up.
+“space gray iPhone X turned on” by rawpixel on Unsplash</description>
+    </item>
+    
+    <item>
+      <title>Ranking News Bias in Python</title>
+      <link>http://www.lucaskohorts.com/posts/ranking-news-bias-in-python/</link>
+      <pubDate>Sat, 21 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/ranking-news-bias-in-python/</guid>
+      <description>I recently read an article in the Washington Post titled, “Ranking the media from liberal to conservative, based on their audiences”. Inspiring me to rank news sites based on their subjectivity and polarity on a given subject, in this case, Donald Trump.
+Photo by rawpixel on Unsplash
+I used Python to pull the following news sites for their 30 most recent articles that contained the keyword “Trump” (ranging from the liberal side of the Washington Post article to the conservative side):</description>
+    </item>
+    
+    <item>
+      <title>Twitter Data Analysis</title>
+      <link>http://www.lucaskohorts.com/posts/data-analysis-in-python/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/data-analysis-in-python/</guid>
+      <description>After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib.</description>
+    </item>
+    
+    <item>
+      <title>Basic data analysis on Twitter with Python</title>
+      <link>http://www.lucaskohorts.com/posts/twitter-data-analysis/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/twitter-data-analysis/</guid>
+      <description>After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib.</description>
+    </item>
+    
+    <item>
+      <title>Create a Twitter Bot in Python Using Tweepy</title>
+      <link>http://www.lucaskohorts.com/posts/create-twitter-bot/</link>
+      <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/create-twitter-bot/</guid>
+      <description>With about 15% of Twitter being composed of bots, I wanted to try my hand at it. I googled how to create a Twitter bot and was brought to a cleanly laid out web app. It allowed you to create a bot that would like, follow, or retweet a tweet based on a keyword. The problem was that you could only create one bot for one function.
+So I decided to code a bot myself with Python and the Tweepy library.</description>
+    </item>
+    
+  </channel>
+</rss>

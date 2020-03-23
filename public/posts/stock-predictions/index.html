@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Lucas Kohorst">
+    
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Predicting Stock Prices with Python"/>
+<meta name="twitter:description" content="Investing in the stock market used to require a ton of capital and a broker that would take a cut from your earnings. Then Robinhood disrupted the industry allowing you to invest as little as $1 and avoid a broker altogether. Robinhood and apps like it have opened up investing to anyone with a connected device and gave non-investors the opportunity to profit from the newest tech start-up.
+“space gray iPhone X turned on” by rawpixel on Unsplash"/>
+
+    <meta property="og:title" content="Predicting Stock Prices with Python" />
+<meta property="og:description" content="Investing in the stock market used to require a ton of capital and a broker that would take a cut from your earnings. Then Robinhood disrupted the industry allowing you to invest as little as $1 and avoid a broker altogether. Robinhood and apps like it have opened up investing to anyone with a connected device and gave non-investors the opportunity to profit from the newest tech start-up.
+“space gray iPhone X turned on” by rawpixel on Unsplash" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucaskohorst.com/posts/stock-predictions/" />
+<meta property="article:published_time" content="2018-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-11-09T00:00:00+00:00" />
+
+
+    
+      <base href="https://lucaskohorst.com/posts/stock-predictions/">
+    
+    <title>
+  Predicting Stock Prices with Python · Home | Lucas Kohorst
+</title>
+
+    
+      <link rel="canonical" href="https://lucaskohorst.com/posts/stock-predictions/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://lucaskohorst.com/css/coder.min.a4f332213a21ce8eb521670c614470c58923aaaf385e2a73982c31dd7642decb.css" integrity="sha256-pPMyITohzo61IWcMYURwxYkjqq84XipzmCwx3XZC3ss=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://lucaskohorst.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.64.1" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-auto">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://lucaskohorst.com/">
+      Home | Lucas Kohorst
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/projects/">Projects</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Predicting Stock Prices with Python</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-11-09T00:00:00Z'>
+                November 9, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              8-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://lucaskohorst.com/tags/prediction/">Prediction</a>
+      <span class="separator">•</span>
+    <a href="https://lucaskohorst.com/tags/finance/">Finance</a>
+      <span class="separator">•</span>
+    <a href="https://lucaskohorst.com/tags/python/">Python</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>Investing in the stock market used to require a ton of capital and a
+broker that would take a cut from your earnings. Then Robinhood
+disrupted the industry allowing you to invest as little as $1 and avoid
+a broker altogether. Robinhood and apps like it have opened up investing
+to anyone with a connected device and gave non-investors the opportunity
+to profit from the newest tech start-up.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/0*kHERZYJucDouYv--" alt=""></p>
+<p>“space gray iPhone X turned on” by
+<a href="https://unsplash.com/@rawpixel?utm_source=medium&amp;utm_medium=referral">rawpixel</a>
+on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral">Unsplash</a></p>
+<p>However, giving those of us who are not economists or accountants the
+freedom to invest our money in the “hottest” or “trending” stocks is not
+always the best financial decision.</p>
+<p>Thousands of companies use software to predict the movement in the stock
+market in order to aid their investing decisions. The average Robinhood
+user does not have this available to them. Primitive predicting
+algorithms such as a time-sereis linear regression can be done with a
+time series prediction by leveraging python packages like
+<a href="https://pypi.org/project/scikit-learn/">scikit-learn</a> and
+<a href="https://pypi.org/project/iexfinance/">iexfinnance</a>.</p>
+<p>This program will scrape a given amount of stocks from the web, predict
+their price in a set number of days and send an SMS message to the user
+informing them of stocks that might be good to check out and invest in.</p>
+<h3 id="e63d" class="graf graf--h3 graf-after--p">Setup</h3>
+<p>In order to create a program that predicts the value of a stock in a set
+amount of days, we need to use some very useful python packages. You
+will need to install the following packages:</p>
+<ol>
+<li><a href="https://pypi.org/project/numpy/">nump</a>y</li>
+<li><a href="https://pypi.org/project/selenium/">selenium</a></li>
+<li><a href="https://pypi.org/project/scikit-learn/">sklearn</a></li>
+<li>i<a href="https://pypi.org/project/iexfinance/">exfinance</a></li>
+</ol>
+<p>If you do not already have some of these packages you can install them
+through <code>pip install PACKAGE</code>{.markup&ndash;code .markup&ndash;p-code} or by
+cloning the git repository.</p>
+<p>Here is an example of installing numpy with pip</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">pip install numpy
+</code></pre></div><p>and with git</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git clone https://github.com/numpy/numpycd numpypython setup.py install
+</code></pre></div><p>Now open up your favorite text editor and create a new python file.
+Start by importing the following packages</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">import numpy as npfrom datetime import datetimeimport smtplibimport timefrom selenium import webdriver
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#For Predictionfrom sklearn.linear_model import LinearRegressionfrom sklearn import preprocessing, cross_validation, svm
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#For Stock Datafrom iexfinance import Stockfrom iexfinance import get_historical_data
+</code></pre></div><p><em>Note: the datetime, time and smtplib packages come with python</em></p>
+<p>In order to scrape the Yahoo stock screener, you will also need to
+install the Chromedriver in order to properly use Selenium. That can be
+found <a href="https://sites.google.com/a/chromium.org/chromedriver/">here</a></p>
+<h3 id="d3de" class="graf graf--h3 graf-after--p">Getting the Stocks</h3>
+<p>Using the Selenium package we can scrape Yahoo stock screeners for
+stock’s ticker abbreviations.</p>
+<p>First, make a function <code>getStocks</code>{.markup&ndash;code .markup&ndash;p-code} that
+takes a parameter of <code>n</code>{.markup&ndash;code .markup&ndash;p-code}, where n is the
+number of stocks we wish to retrieve.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def getStocks(n):
+</code></pre></div><p>In the function create your chrome driver then use
+<code>driver.get(url)</code>{.markup&ndash;code .markup&ndash;p-code} to retrieve the desired
+webpage. We will be navigating to
+<a href="https://finance.yahoo.com/screener/predefined/aggressive_small_caps?offset=0&amp;count=202">https://finance.yahoo.com/screener/predefined/aggressive_small_caps?offset=0&amp;count=202</a>
+which will display 200 stocks listed in the category “aggressive small
+caps”. If you go to
+<a href="https://finance.yahoo.com/screener">https://finance.yahoo.com/screener</a>
+you will see a list of all screener categories that Yahoo provides. You
+can then change the URL to your liking.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#Navigating to the Yahoo stock screener
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">driver = webdriver.Chrome(
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">‘PATH TO CHROME DRIVER’)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">url = “https://finance.yahoo.com/screener/predefined/aggressive_small_caps?offset=0&amp;count=202&#34;
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">driver.get(url)
+</code></pre></div><p>Make sure to add the path to where you downloaded the chromedriver to
+where the bolded code is.</p>
+<p>You will now need to create a list to hold the ticker values
+<code>stock_list = []</code>{.markup&ndash;code .markup&ndash;p-code} .</p>
+<p>Next, we need to find the XPath for the ticker elements so that we can
+scrape them. Go to the screener URL and open up developer tools in your
+web browser (<strong>Command+Option+i</strong> / <strong>Control+Shift+I</strong> or <strong>F12</strong> for
+Windows).</p>
+<p>Click the “Select Element” button</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*95J7ATFmf79k4Z4R-T5u2w.jpeg" alt=""></p>
+<p>Click on the ticker and inspect its attributes</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*jeq-TTXviKVBh3aDjGE3VA.jpeg" alt=""></p>
+<p>Finally, copy the XPath of the first ticker the HTML element should look
+something like this</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;a href=”/quote/RAD?p=RAD” title=”Rite Aid Corporation” class=”Fw(b)” data-reactid=”79&#34;&gt;RAD&lt;/a&gt;
+</code></pre></div><p><img src="https://cdn-images-1.medium.com/max/800/1*9LafC5A2cq5_3HzQzZz4OA.jpeg" alt=""></p>
+<p>The XPath should look something like this</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">//*[@id=”scr-res-table”]/div[2]/table/tbody/tr[1]/td[1]/a
+</code></pre></div><p>If you inspect the ticker attributes below the first one you will notice
+that the XPath is exactly the same except the bolded 1 in the code above
+increments by 1 for each ticker. So the 57th ticker XPath value is</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">//*[@id=”scr-res-table”]/div[2]/table/tbody/tr[57]/td[1]/a
+</code></pre></div><p>This greatly helps us. We can simply make a <code>for</code>{.markup&ndash;code
+.markup&ndash;p-code} loop that increments that value every time it runs and
+stores the value of the ticker to our <code>stock_list</code>{.markup&ndash;code
+.markup&ndash;p-code}.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">stock_list = []n += 1
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for i in range(1, n):  ticker = driver.find_element_by_xpath(
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">‘//*[@id = “scr-res-table”]/div[2]/table/tbody/tr[‘ + str(i) +          ‘]/td[1]/a’)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">stock_list.append(ticker.text)
+</code></pre></div><p><code>n</code>{.markup&ndash;code .markup&ndash;p-code} is the number of stocks that our
+function, <code>getStocks(n)</code>{.markup&ndash;code .markup&ndash;p-code}, will retrieve.
+We have to increment by 1 since Python is 0-indexed. Then we use the
+value <code>i </code>{.markup&ndash;code .markup&ndash;p-code}to modify our XPath for each
+ticker attribute.</p>
+<p>Use <code>driver.quit()</code>{.markup&ndash;code .markup&ndash;p-code} to exit the web
+browser. We now have all ticker values and are ready to predict the
+stocks.</p>
+<p>We are going to create a function to predict the stocks in the next
+section but right now we can create another <code>for</code>{.markup&ndash;code
+.markup&ndash;p-code} loop that cycles through all the ticker values in our
+list and predicts the price for each.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#Using the stock list to predict the future price of the stock a specificed amount of days
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for i in stock_list:  try:    predictData(i, 5)  except:    print(&#34;Stock: &#34; + i + &#34; was not predicted&#34;)
+</code></pre></div><p>Handle the code with a try and except block (just in case our stock
+package does not recognize the ticker value).</p>
+<h3 id="11cc" class="graf graf--h3 graf-after--p">Predicting the Stocks</h3>
+<p>Create a new function <code>predictData</code>{.markup&ndash;code .markup&ndash;p-code} that
+takes the parameters <code>stock</code>{.markup&ndash;code .markup&ndash;p-code} and
+<code>days</code>{.markup&ndash;code .markup&ndash;p-code} (where days is the number of days
+we want to predict the stock in the future). We are going to use about 2
+years of data for our prediction from January 1, 2017, until now
+(although you could use whatever you want). Set
+<code>start = datetime(2017, 1, 1)</code>{.markup&ndash;code .markup&ndash;p-code} and
+<code>end = datetime.now()</code>{.markup&ndash;code .markup&ndash;p-code}. Then use the
+iexfinance function to get the historical data for the given stock
+<code>df = get_historical_data(stock, start=start, end=end, output_format=’pandas’)</code>{.markup&ndash;code
+.markup&ndash;p-code}.</p>
+<p>Then export the historical data to a .csv file, create a new virtual
+column for the prediction and set
+<code>forecast_time = int(days)</code>{.markup&ndash;code .markup&ndash;p-code}</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">start = datetime(2017, 1, 1)end = datetime.now()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#Outputting the Historical data into a .csv for later usedf = get_historical_data(stock, start=start, end=end,     output_format=&#39;pandas&#39;)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">csv_name = (&#39;Exports/&#39; + stock + &#39;_Export.csv&#39;)df.to_csv(csv_name)df[&#39;prediction&#39;] = df[&#39;close&#39;].shift(-1)df.dropna(inplace=True)forecast_time = int(days)
+</code></pre></div><p>Use numpy to manipulate the array then, preprocess the values and create
+X and Y training and testing values. For this prediction, we are going
+to use a test_size of <code>0.5</code>{.markup&ndash;code .markup&ndash;p-code} this value
+gave me the most accurate results.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">X = np.array(df.drop([&#39;prediction&#39;], 1))Y = np.array(df[&#39;prediction&#39;])X = preprocessing.scale(X)X_prediction = X[-forecast_time:]
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">X_train, X_test, Y_train, Y_test =         cross_validation.train_test_split(X, Y, test_size=0.5)
+</code></pre></div><p>Finally, run a linear regression on the data. Create a variable
+<code>clf = LinearRegression()</code>{.markup&ndash;code .markup&ndash;p-code}, fit the X and
+Y training data and store the X value prediction in a variable
+<code>prediction</code>{.markup&ndash;code .markup&ndash;p-code}.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#Performing the Regression on the training data
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">clf = LinearRegression()clf.fit(X_train, Y_train)prediction = (clf.predict(X_prediction))
+</code></pre></div><p>In the next section, we will define the function,
+<code>sendMessage</code>{.markup&ndash;code .markup&ndash;p-code}, that sends the prediction
+of the stocks via SMS. In the <code>predictData</code>{.markup&ndash;code
+.markup&ndash;p-code} function add an <code>if</code>{.markup&ndash;code .markup&ndash;p-code}
+statement that stores a string as the output and calls the
+<code>sendMessage</code>{.markup&ndash;code .markup&ndash;p-code} function passing it the
+parameter <code>output</code>{.markup&ndash;code .markup&ndash;p-code}.</p>
+<p>The variable <code>output</code>{.markup&ndash;code .markup&ndash;p-code} can contain
+whatever information that you find useful. I had it tell me the stock
+name, the 1-day prediction and the 5-day prediction.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#Sending the SMS if the predicted price of the stock is at least 1 greater than the previous closing price
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">last_row = df.tail(1)if (float(prediction[4]) &gt; (float(last_row[&#39;close&#39;]))):
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">output = (&#34;\n\nStock:&#34; + str(stock) + &#34;\nPrior Close:\n&#34; +         str(last_row[&#39;close&#39;]) + &#34;\n\nPrediction in 1 Day: &#34; + str(prediction[0]) + &#34;\nPrediction in 5 Days: &#34; + str(prediction[4]))
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sendMessage(output)
+</code></pre></div><h3 id="8a5f" class="graf graf--h3 graf-after--pre">Sending the Message</h3>
+<p>Create a function <code>sendMessage</code>{.markup&ndash;code .markup&ndash;p-code} that
+takes <code>output</code>{.markup&ndash;code .markup&ndash;p-code} as a parameter. To send an
+SMS message we are going to use the <code>smtplib</code>{.markup&ndash;code
+.markup&ndash;p-code} package making it so we can send text messages through
+our email.</p>
+<p>Store your email username, password and the receiving number as
+variables. My cell phone carrier is Verizon so I am using the @vtext
+domain here are some popular phone companies extensions thanks to this
+<a href="https://20somethingfinance.com/how-to-send-text-messages-sms-via-email-for-free/">website</a>.</p>
+<ul>
+<li>AT&amp;T: <a href="mailto:number@txt.att.net">number@txt.att.net</a> (SMS), <a href="mailto:number@mms.att.net">number@mms.att.net</a> (MMS)</li>
+<li>T-Mobile: <a href="mailto:number@tmomail.net">number@tmomail.net</a>(SMS &amp; MMS)</li>
+<li>Verizon: <a href="mailto:number@vtext.com">number@vtext.com</a> (SMS), <a href="mailto:number@vzwpix.com">number@vzwpix.com</a> (MMS)</li>
+<li>Sprint: <a href="mailto:number@messaging.sprintpcs.com">number@messaging.sprintpcs.com</a>(SMS), <a href="mailto:number@pm.sprint.com">number@pm.sprint.com</a>
+(MMS)</li>
+<li>Virgin Mobile: <a href="mailto:number@vmobl.com">number@vmobl.com</a> (SMS), <a href="mailto:number@vmpix.com">number@vmpix.com</a> (MMS)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def sendMessage(output):
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">username = &#34;EMAIL&#34;  password = &#34;PASSWORD&#34;  vtext = &#34;PHONENUMBER@vtext.com&#34;
+</code></pre></div><p>Use the following lines to send the SMS with the proper message</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">message = outputmsg = &#34;&#34;&#34;From: %s To: %s %s&#34;&#34;&#34; % (username, vtext, message)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">server = smtplib.SMTP(&#39;smtp.gmail.com&#39;, 587)server.starttls()server.login(username, password)server.sendmail(username, vtext, msg)server.quit()
+</code></pre></div><h3 id="82ff" class="graf graf--h3 graf-after--pre">Running the Program</h3>
+<p>Finally, create a main method to run the program. We are going to set
+the number of stocks to be predicted at 200.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">if __name__ == &#39;__main__&#39;:  getStocks(200)
+</code></pre></div><h3 id="e311" class="graf graf--h3 graf-after--pre">Conclusion</h3>
+<p>Running the prediction on just 10 stocks the average percent error
+between the actual 1-day price and 1 day predicted price was
+**9.02%**where the 5-day percent error was a surprising **5.90%**off.
+This means that, on average, the 5-day prediction was only <strong>$0.14</strong>
+off of the actual price.</p>
+<p>These results could be attributed to a small sample size but either way
+they are promising and can serve as a great aid when you are investing
+in stocks.</p>
+<hr>
+<p><a href="https://github.com/Lucas-Kohorst/Python-Stock/">View the full source code on
+Github</a></p>
+<p><a href="https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607" title="https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607"><strong>Create a Twitter Bot in Python Using Tweepy</strong><br>
+*With about 15% of Twitter being composed of bots, I wanted to try my
+hand at it. I googled how to create a Twitter
+bot…*medium.freecodecamp.org</a>[](<a href="https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607">https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607</a>)</p>
+<p><a href="https://medium.com/@lucaskohorst/twitter-data-analysis-d5fb7d42ebc7" title="https://medium.com/@lucaskohorst/twitter-data-analysis-d5fb7d42ebc7"><strong>Twitter Data Analysis</strong><br>
+*After creating the Free Wtr bot using Tweepy and Python and this code,
+I wanted a way to see how Twitter users
+were…*medium.co</a>[](<a href="https://medium.com/@lucaskohorst/twitter-data-analysis-d5fb7d42ebc7">https://medium.com/@lucaskohorst/twitter-data-analysis-d5fb7d42ebc7</a>)</p>
+<p><a href="https://towardsdatascience.com/ranking-news-bias-in-python-e9bb5d1ba93f" title="https://towardsdatascience.com/ranking-news-bias-in-python-e9bb5d1ba93f"><strong>Ranking News Bias in Python</strong><br>
+*I recently read an article in the Washington Post titled, “Ranking the
+media from liberal to conservative, based
+on…*towardsdatascience.com</a>[](<a href="https://towardsdatascience.com/ranking-news-bias-in-python-e9bb5d1ba93f">https://towardsdatascience.com/ranking-news-bias-in-python-e9bb5d1ba93f</a>)</p>
+<p>By <a href="https://medium.com/@lucaskohorst">Lucas Kohorst</a> on <a href="https://medium.com/p/ec1d0c9bece1">November 9,
+2018</a>.</p>
+<p><a href="https://medium.com/@lucaskohorst/predicting-stock-prices-with-python-ec1d0c9bece1">Canonical
+link</a></p>
+<p>Exported from <a href="https://medium.com">Medium</a> on March 5, 2020.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Hosted on <a href='https://ipfs.io' target='_blank'>IPFS</a></p>
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+    
+
+  </body>
+
+</html>

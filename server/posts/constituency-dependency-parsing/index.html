@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Lucas Kohorst">
+    <meta name="description" content="Lucas Kohorsts personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Constituency vs. Dependency Parsing"/>
+<meta name="twitter:description" content="Sentence parsing can be helpful in understanding the meaning, structure, and syntactical relationships in sentences. Two common types are dependency and constituency parsing which is also known as syntactical parsing. Dependency parsing is the process of defining the grammatical structure of a sentence by listing each word as a node and displaying links to its dependents. A constituency parsed tree displays the syntactic structure of a sentence using context-free grammar. Unlike dependency parsing which relies on dependency grammar."/>
+
+    <meta property="og:title" content="Constituency vs. Dependency Parsing" />
+<meta property="og:description" content="Sentence parsing can be helpful in understanding the meaning, structure, and syntactical relationships in sentences. Two common types are dependency and constituency parsing which is also known as syntactical parsing. Dependency parsing is the process of defining the grammatical structure of a sentence by listing each word as a node and displaying links to its dependents. A constituency parsed tree displays the syntactic structure of a sentence using context-free grammar. Unlike dependency parsing which relies on dependency grammar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.lucaskohorts.com/posts/constituency-dependency-parsing/" />
+<meta property="article:published_time" content="2019-12-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-13T00:00:00+00:00" />
+
+
+    
+      <base href="http://www.lucaskohorts.com/posts/constituency-dependency-parsing/">
+    
+    <title>
+  Constituency vs. Dependency Parsing · Lucas Kohorst
+</title>
+
+    
+      <link rel="canonical" href="http://www.lucaskohorts.com/posts/constituency-dependency-parsing/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="http://www.lucaskohorts.com/css/coder.min.a4f332213a21ce8eb521670c614470c58923aaaf385e2a73982c31dd7642decb.css" integrity="sha256-pPMyITohzo61IWcMYURwxYkjqq84XipzmCwx3XZC3ss=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="http://www.lucaskohorts.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="http://www.lucaskohorts.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://www.lucaskohorts.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.64.1" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-auto">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="http://www.lucaskohorts.com/">
+      Lucas Kohorst
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://www.lucaskohorts.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://www.lucaskohorts.com/projects/">Projects</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Constituency vs. Dependency Parsing</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-12-13T00:00:00Z'>
+                December 13, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              7-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="http://www.lucaskohorts.com/tags/language-technology/">Language Technology</a>
+      <span class="separator">•</span>
+    <a href="http://www.lucaskohorts.com/tags/parsing/">Parsing</a>
+      <span class="separator">•</span>
+    <a href="http://www.lucaskohorts.com/tags/npm/">NPM</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p><img src="https://cdn-images-1.medium.com/max/800/1*hgsOy2taLHryX3kFFtRenA.png" alt=""></p>
+<p>Sentence parsing can be helpful in understanding the meaning, structure,
+and syntactical relationships in sentences. Two common types are
+dependency and constituency parsing which is also known as syntactical
+parsing. Dependency parsing is the process of defining the grammatical
+structure of a sentence by listing each word as a node and displaying
+links to its dependents. A constituency parsed tree displays the
+syntactic structure of a sentence using context-free grammar. Unlike
+dependency parsing which relies on dependency grammar. Both types of
+parsing are important in computational linguistics but there is much
+debate over which is better. Critics of constituency parsing say that it
+displays extraneous information while supporters like to visualize the
+entire sentence structure rather than just the grammatical dependencies.</p>
+<p>I created a dependency and constituency sentence tree visualizer in
+order to analyze the two parsing systems published as an NPM package,
+<a href="https://npmjs.com/react-sentence-tree">react-sentence-tree</a>. This
+project relied on using React as the web framework, Stanford CoreNLP as
+the parsing server, and react-d3-tree to visualize the parsed sentences.
+Using these technologies, I created an open-source Node.js package for
+other developers to use and expand upon along with a demo web app. With
+this package, I tested various sentences, such as sentence fragments,
+non-projective and ambiguous sentences to compare and contrast
+constituency and dependency parsing.</p>
+<p>Constituency parsing is very helpful in visualizing the entire
+syntactical structure of a sentence. These parse trees can be useful in
+word processing systems for grammar checking. For example, it is very
+hard to parse a grammatically incorrect sentence. This is because if a
+sentence cannot be parsed then the program can make a reasonable
+assumption that the sentence contains some grammatical errors. However
+more often than not constituency parses are used as representations of
+the sentence and play a role in information extraction. Such as,
+determining the subject of a sentence.</p>
+<p>The biggest problem that arises with constituency parsing is structural
+ambiguity. This occurs when there are multiple grammatical
+interpretations of a sentence. The sentence “I shot an elephant in my
+pajamas” is a common sentence linguist use to demonstrate ambiguity.
+There are multiple ways the sentence can be understood (albeit one
+clearly ridiculous). Either the elephant was shot while the person was
+standing in his pajamas, the obviously correct interpretation. Or the
+elephant was shot inside of the person’s pajamas. In this example there
+is a structural ambiguity around the word “shot”, if “shot” is parsed as
+a verb by itself the sentence will convey the humorous meaning. When
+parsed correctly the word “shot” should be a parsed as a verb nested in
+a verb phrase with the corresponding noun phrase being “an elephant”.</p>
+<p>This is an example of structural ambiguity since “shot” can be attached
+to the sentence as a verb or contained as a verb within a verb phrase.
+The other common type of ambiguity deals with coordination. When phrases
+contain conjunction such as “and” or, “but” they can be subject to
+coordination ambiguity. For example, the sentence “Everyone here are old
+men and women”. This sentence can be understood as everyone here is an
+old man or an old woman, but it can also be parsed as everyone here is
+an old man or a woman.</p>
+<p>Constituency parsing can be achieved with multiple algorithms the
+<a href="http://CYK%20algorithm%20-%20Wikipedia">Cocke-Kasami-Younger (CKY)
+algorithm</a>, a probabilistic
+bottom-up approach is a popular approach along with the probabilistic
+context-free grammars
+(<a href="http://www.cs.columbia.edu/~mcollins/courses/nlp2011/notes/pcfgs.pdf">PCFGs</a>)
+algorithm.</p>
+<p>My project relied on <a href="https://stanfordnlp.github.io/">Stanford’s
+CoreNLP</a> which uses a <a href="https://en.wikipedia.org/wiki/Shift-reduce_parsing">shift-reducer
+algorithm</a> for
+syntactical parsing, primarily because it is more efficient than PCFG or
+CKY. Shift-reducing is a stack-based approach to parsing using
+context-free grammar. All tokens in the sentence are pushed onto the
+stack, then the top two tokens are popped off and matched to grammar
+rules and placed back onto the stack in their reduced form.</p>
+<p>Constituency parsers have trouble with ambiguous sentences, so I decided
+to test sentences such as “I shot the elephant in my pajamas” and “I
+shot the elephant in pajamas”. There are two interpretations of these
+sentences as described above. The constituency parser correctly parsed
+both sentences as the non-humorous way. Other ambiguous sentences such
+as “I saw a man on a hill with a telescope” are also parsed as expected.
+In addition to ambiguity parsing errors can commonly occur from
+non-projective sentences or sentences in which long-distance syntactical
+errors occur.</p>
+<p>One problem associated with constituency parsing is that in order to use
+common algorithms like CKY, the sentence must be in <a href="https://en.wikipedia.org/wiki/Chomsky_Normal_Form">Chomsky Normal
+Form</a> (CNF). This is
+a disadvantage because it is often difficult to convert free word order
+languages, for example, many Slavic languages. This can be resolved by
+using <a href="https://en.wikipedia.org/wiki/Role_and_reference_grammar">Role and reference
+grammar</a> (RRG)
+rather than context-free grammar transformed into CNF. Role and
+reference grammar’s main feature is that it utilizes lexical
+decompensation. Lexical semantics are words, sub-words and units of
+words. RRG breaks down the sentence into lexical parts and using an
+analysis of clause structure in order to form a sentence hierarchy. Role
+and reference grammar is less popular than constituency parsing but
+provides the advantage of being able to easily parse free word order
+languages.</p>
+<p>Dependency parsing differs from syntactical parsing as it uses
+dependency grammar and displays only the relationships between words
+rather than the sentence structure and relationship. Dependency trees
+are often more concise than constituency trees because they only display
+grammar between a governor and is dependents. Similar to constituency
+parsing dependency is helpful in word processing systems and grammar
+checking.</p>
+<p>Common algorithms used in dependency parsing are treebank searching
+algorithms like
+<a href="https://www.mitpressjournals.org/doi/full/10.1162/COLI_a_00185">Arc-eager</a>
+or <a href="http://www.cl.cam.ac.uk/~sc609/pubs/cl11_early.pdf">beam search</a>,
+graph-based approaches such as edge based or by using a neural network
+which is what <a href="https://nlp.stanford.edu/software/nndep.shtml">Stanford
+CoreNLP</a> utilizes and
+what I used in
+<a href="https://npmjs.com/react-sentence-tree">react-sentence-tree</a>.</p>
+<p>Dependency parsing’s one key advantage over constituency is that it has
+the ability to parse relatively free word order. This allows languages
+such as Latin, which has no fixed order, to be parsed. Dependency
+parsing also performs better when parsing non-projective and fragmented
+sentences. Constituency parsing’s advantage over constituency parsing is
+its ability to display the entire structure of a sentence rather than
+simply the word associations.</p>
+<p>When developing and testing my application I ran into a few limitations
+and bugs. The first limitation is that currently the project only
+supports parsing English, however I do have ideas on how to expand the
+languages available in the future. An interesting aspect is that if
+there are multiple interpretations of a sentence (i.e. if the sentence
+is ambiguous) the parser only displays one of them and does not inform
+the user that there are other interpretations. This can be seen with the
+elephant example from above. The common interpretation that the man is
+in his pajamas is the rendered tree. I would like to inform the user of
+the number of possible parses and allow them to select which parse they
+want to visualize. Another interesting bug in the program is that the
+last letter inputted is not parsed or displayed on the tree. I have a
+feeling that this is due to how state is handled in my application. This
+bug does not affect how the sentence is parsed, since it is the last
+letter in the sentence, but it could lead to confusion of the user.</p>
+<p>Constituency and dependency parsing share many characteristics in how
+and what they can parse. Many of the algorithms such as Shift-Reducer
+and the use of Neural Nets are commonly used in both parsing techniques.
+However, they differ in what they produce and how effective they are.
+Dependency parsing displays only relationships between words and their
+constitutes while constituency parsing displays the entire sentence
+structure and relationships. Often dependency parsing is praised for
+being concise yet informative, but constituency parsing is often easier
+to read and understand. Working on this project I learned that while
+constituency and dependency parsing have their differences and specific
+use cases. They provide very similar results and the decision on which
+to use is ultimately up to you and your preferences.</p>
+<hr>
+<p>You can check out the react package here
+<a href="https://npmjs.com/react-sentence-tree">react-sentence-tree</a></p>
+<p>Github: <a href="https://github.com/Lucas-Kohorst">Lucas-Kohorst</a></p>
+<p>Twitter: <a href="https://twitter.com/KohorstLucas">@KohorstLucas</a></p>
+<p>Email: <a href="mailto:kohorstlucas@gmail.com">kohorstlucas@gmail.com</a></p>
+<p>By <a href="https://medium.com/@lucaskohorst">Lucas Kohorst</a> on <a href="https://medium.com/p/8601986e5a52">December 13,
+2019</a>.</p>
+<p><a href="https://medium.com/@lucaskohorst/constituency-vs-dependency-parsing-8601986e5a52">Canonical
+link</a></p>
+<p>Exported from <a href="https://medium.com">Medium</a> on March 5, 2020.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+    
+
+  </body>
+
+</html>

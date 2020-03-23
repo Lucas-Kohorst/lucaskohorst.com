@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ENS on Lucas Kohorst</title>
+    <link>http://www.lucaskohorts.com/tags/ens/</link>
+    <description>Recent content in ENS on Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.lucaskohorts.com/tags/ens/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Decentralizing your Website</title>
+      <link>http://www.lucaskohorts.com/posts/decentralizing-your-website/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/decentralizing-your-website/</guid>
+      <description>IPFS + ENS unsplash.com/photos/Q1p7bh3SHj8
+When hosting a website usually you use a dedicated VPS like Digital Ocean, Linode, Google, or Amazon. After setting up your server you can register a domain at Google Domains or NameCheap. The last step is editing your DNS records to point your domain at your server. Now you can access your website by navigating to your domain name. However, there is a problem with this. Your VPS controls the hosting of your site and the domain name service you went with maintains control of your domain.</description>
+    </item>
+    
+  </channel>
+</rss>

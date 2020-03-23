@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Lucas Kohorst">
+    
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Contract Upgrade and Migration"/>
+<meta name="twitter:description" content="Two easy steps
+Thank you to everyone that has already activated their DAI on Give Together. Today we made needed changes to the contract. There was a bug that did not forward rDAI to the charities when sent to the contract. This has been fixed in this commit. In addition to the fix, a few new methods have been added, including one to transfer ownership of the contact is necessary."/>
+
+    <meta property="og:title" content="Contract Upgrade and Migration" />
+<meta property="og:description" content="Two easy steps
+Thank you to everyone that has already activated their DAI on Give Together. Today we made needed changes to the contract. There was a bug that did not forward rDAI to the charities when sent to the contract. This has been fixed in this commit. In addition to the fix, a few new methods have been added, including one to transfer ownership of the contact is necessary." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucaskohorst.com/posts/contract-upgrade-and-migration/" />
+<meta property="article:published_time" content="2020-02-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-02-04T00:00:00+00:00" />
+
+
+    
+      <base href="https://lucaskohorst.com/posts/contract-upgrade-and-migration/">
+    
+    <title>
+  Contract Upgrade and Migration · Home | Lucas Kohorst
+</title>
+
+    
+      <link rel="canonical" href="https://lucaskohorst.com/posts/contract-upgrade-and-migration/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://lucaskohorst.com/css/coder.min.a4f332213a21ce8eb521670c614470c58923aaaf385e2a73982c31dd7642decb.css" integrity="sha256-pPMyITohzo61IWcMYURwxYkjqq84XipzmCwx3XZC3ss=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://lucaskohorst.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.64.1" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-auto">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://lucaskohorst.com/">
+      Home | Lucas Kohorst
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/projects/">Projects</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Contract Upgrade and Migration</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-02-04T00:00:00Z'>
+                February 4, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://lucaskohorst.com/tags/give-together/">Give Together</a>
+      <span class="separator">•</span>
+    <a href="https://lucaskohorst.com/tags/blockchain/">Blockchain</a>
+      <span class="separator">•</span>
+    <a href="https://lucaskohorst.com/tags/defi/">DeFi</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>Two easy steps</p>
+<p>Thank you to everyone that has already activated their DAI on <a href="https://givetogether.app">Give
+Together</a>. Today we made needed changes to the
+contract. There was a bug that did not forward rDAI to the charities
+when sent to the contract. This has been fixed in <a href="https://github.com/Give-Together/contracts/commit/28632a163bc6653e4779cd3d10008eee788fa935">this
+commit</a>.
+In addition to the fix, a few new methods have been added, including one
+to transfer ownership of the contact is necessary.</p>
+<p>If you have activated your DAI on <a href="https://givetogether.app">Give
+Together</a> you will need to withdraw it and
+then activate it again. This is due to how rDAI works. When you activate
+your DAI it begins to wear a “hat” which specifies the beneficiary of
+the interest generated. You can read more about rDAI
+<a href="https://github.com/rtoken-project/rtoken-contracts/#readme">here</a>. In
+the past the Give Together’s hat was #61. We have now upgraded to hat
+#116 and the contract
+<a href="https://etherscan.io/address/0x931621613f1f1953adb085c2b06d664363e54aaf">here</a>.</p>
+<p>By withdrawing your activated DAI on Give Together and then activating
+it again you can easily switch hats to the new contract. Note: you can
+also change your hat directly by using the <a href="https://etherscan.io/address/0x261b45d85ccfeabb11f022eba346ee8d1cd488c0#writeProxyContract">rDAI proxy
+contract</a>
+and calling the changeHat function with the input parameter as Give
+Together’s new hat #116.</p>
+<ol>
+<li>Withdraw your activated DAI</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*AifPiS5SGP43MmwuuMxanQ.png" alt=""></p>
+<p>Withdrawing activated DAI</p>
+<p>​2. Activate it!</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*u_AoVGe5e6L2bBjW4H_yZQ.png" alt=""></p>
+<p>Activate your DAI</p>
+<p>That’s it. Thank you for migrating your DAI to the new contract and
+donating!</p>
+<p>By <a href="https://medium.com/@lucaskohorst">Lucas Kohorst</a> on <a href="https://medium.com/p/babfc1b6e224">February 4,
+2020</a>.</p>
+<p><a href="https://medium.com/@lucaskohorst/contract-upgrade-and-migration-babfc1b6e224">Canonical
+link</a></p>
+<p>Exported from <a href="https://medium.com">Medium</a> on March 5, 2020.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Hosted on <a href='https://ipfs.io' target='_blank'>IPFS</a></p>
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+    
+
+  </body>
+
+</html>

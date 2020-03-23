@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Analysis on Home | Lucas Kohorst</title>
+    <link>https://lucaskohorst.com/tags/data-analysis/</link>
+    <description>Recent content in Data Analysis on Home | Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://lucaskohorst.com/tags/data-analysis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Twitter Data Analysis</title>
+      <link>https://lucaskohorst.com/posts/data-analysis-in-python/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucaskohorst.com/posts/data-analysis-in-python/</guid>
+      <description>After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib.</description>
+    </item>
+    
+    <item>
+      <title>Basic data analysis on Twitter with Python</title>
+      <link>https://lucaskohorst.com/posts/twitter-data-analysis/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucaskohorst.com/posts/twitter-data-analysis/</guid>
+      <description>After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib.</description>
+    </item>
+    
+  </channel>
+</rss>

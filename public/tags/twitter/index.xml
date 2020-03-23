@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Twitter on Home | Lucas Kohorst</title>
+    <link>https://lucaskohorst.com/tags/twitter/</link>
+    <description>Recent content in Twitter on Home | Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 17 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://lucaskohorst.com/tags/twitter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic data analysis on Twitter with Python</title>
+      <link>https://lucaskohorst.com/posts/twitter-data-analysis/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucaskohorst.com/posts/twitter-data-analysis/</guid>
+      <description>After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib.</description>
+    </item>
+    
+    <item>
+      <title>Create a Twitter Bot in Python Using Tweepy</title>
+      <link>https://lucaskohorst.com/posts/create-twitter-bot/</link>
+      <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucaskohorst.com/posts/create-twitter-bot/</guid>
+      <description>With about 15% of Twitter being composed of bots, I wanted to try my hand at it. I googled how to create a Twitter bot and was brought to a cleanly laid out web app. It allowed you to create a bot that would like, follow, or retweet a tweet based on a keyword. The problem was that you could only create one bot for one function.
+So I decided to code a bot myself with Python and the Tweepy library.</description>
+    </item>
+    
+  </channel>
+</rss>

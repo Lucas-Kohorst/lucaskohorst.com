@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Lucas Kohorst</title>
+    <link>http://www.lucaskohorts.com/posts/</link>
+    <description>Recent content in Posts on Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 04 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.lucaskohorts.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Contract Upgrade and Migration</title>
+      <link>http://www.lucaskohorts.com/posts/contract-upgrade-and-migration/</link>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/contract-upgrade-and-migration/</guid>
+      <description>Two easy steps
+Thank you to everyone that has already activated their DAI on Give Together. Today we made needed changes to the contract. There was a bug that did not forward rDAI to the charities when sent to the contract. This has been fixed in this commit. In addition to the fix, a few new methods have been added, including one to transfer ownership of the contact is necessary.</description>
+    </item>
+    
+    <item>
+      <title>Introducing Give Together</title>
+      <link>http://www.lucaskohorts.com/posts/give-together/</link>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/give-together/</guid>
+      <description>No Loss Charitable Donations powered by rDAI
+Give Together
+Give Together allows you to donate to a new charity each week all at no loss to you!
+Each week an Ethereum Smart Contract determines a new charity currently from this list (although we are open to adding more!). This week’s charity is Code for America and later today the interest generated will be redeemed to them (the contract became live on the mainnet last week).</description>
+    </item>
+    
+    <item>
+      <title>Decentralizing your Website</title>
+      <link>http://www.lucaskohorts.com/posts/decentralizing-your-website/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/decentralizing-your-website/</guid>
+      <description>IPFS + ENS unsplash.com/photos/Q1p7bh3SHj8
+When hosting a website usually you use a dedicated VPS like Digital Ocean, Linode, Google, or Amazon. After setting up your server you can register a domain at Google Domains or NameCheap. The last step is editing your DNS records to point your domain at your server. Now you can access your website by navigating to your domain name. However, there is a problem with this. Your VPS controls the hosting of your site and the domain name service you went with maintains control of your domain.</description>
+    </item>
+    
+    <item>
+      <title>Constituency vs. Dependency Parsing</title>
+      <link>http://www.lucaskohorts.com/posts/constituency-dependency-parsing/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/constituency-dependency-parsing/</guid>
+      <description>Sentence parsing can be helpful in understanding the meaning, structure, and syntactical relationships in sentences. Two common types are dependency and constituency parsing which is also known as syntactical parsing. Dependency parsing is the process of defining the grammatical structure of a sentence by listing each word as a node and displaying links to its dependents. A constituency parsed tree displays the syntactic structure of a sentence using context-free grammar. Unlike dependency parsing which relies on dependency grammar.</description>
+    </item>
+    
+    <item>
+      <title>Predicting Stock Prices with Python</title>
+      <link>http://www.lucaskohorts.com/posts/stock-predictions/</link>
+      <pubDate>Fri, 09 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/stock-predictions/</guid>
+      <description>Investing in the stock market used to require a ton of capital and a broker that would take a cut from your earnings. Then Robinhood disrupted the industry allowing you to invest as little as $1 and avoid a broker altogether. Robinhood and apps like it have opened up investing to anyone with a connected device and gave non-investors the opportunity to profit from the newest tech start-up.
+“space gray iPhone X turned on” by rawpixel on Unsplash</description>
+    </item>
+    
+    <item>
+      <title>Ranking News Bias in Python</title>
+      <link>http://www.lucaskohorts.com/posts/ranking-news-bias-in-python/</link>
+      <pubDate>Sat, 21 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/ranking-news-bias-in-python/</guid>
+      <description>I recently read an article in the Washington Post titled, “Ranking the media from liberal to conservative, based on their audiences”. Inspiring me to rank news sites based on their subjectivity and polarity on a given subject, in this case, Donald Trump.
+Photo by rawpixel on Unsplash
+I used Python to pull the following news sites for their 30 most recent articles that contained the keyword “Trump” (ranging from the liberal side of the Washington Post article to the conservative side):</description>
+    </item>
+    
+    <item>
+      <title>Twitter Data Analysis</title>
+      <link>http://www.lucaskohorts.com/posts/data-analysis-in-python/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/data-analysis-in-python/</guid>
+      <description>After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib.</description>
+    </item>
+    
+    <item>
+      <title>Data Transparency in an Un-Private Internet</title>
+      <link>http://www.lucaskohorts.com/posts/data-transparency/</link>
+      <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/data-transparency/</guid>
+      <description>The information age has revolutionized the way we interact, communicate and are perceived. In the United States, approximately 90 percent of the population is on the internet, using Facebook and Google to catch up with high school friends and to answer their questions. Companies such as Google constantly collect data on search habits of the user and what they like, in order to provide more personalized results and to improve their company.</description>
+    </item>
+    
+    <item>
+      <title>Basic data analysis on Twitter with Python</title>
+      <link>http://www.lucaskohorts.com/posts/twitter-data-analysis/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/twitter-data-analysis/</guid>
+      <description>After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib.</description>
+    </item>
+    
+    <item>
+      <title>Create a Twitter Bot in Python Using Tweepy</title>
+      <link>http://www.lucaskohorts.com/posts/create-twitter-bot/</link>
+      <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/create-twitter-bot/</guid>
+      <description>With about 15% of Twitter being composed of bots, I wanted to try my hand at it. I googled how to create a Twitter bot and was brought to a cleanly laid out web app. It allowed you to create a bot that would like, follow, or retweet a tweet based on a keyword. The problem was that you could only create one bot for one function.
+So I decided to code a bot myself with Python and the Tweepy library.</description>
+    </item>
+    
+  </channel>
+</rss>

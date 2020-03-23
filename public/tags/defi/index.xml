@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DeFi on Home | Lucas Kohorst</title>
+    <link>https://lucaskohorst.com/tags/defi/</link>
+    <description>Recent content in DeFi on Home | Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 04 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://lucaskohorst.com/tags/defi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Contract Upgrade and Migration</title>
+      <link>https://lucaskohorst.com/posts/contract-upgrade-and-migration/</link>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucaskohorst.com/posts/contract-upgrade-and-migration/</guid>
+      <description>Two easy steps
+Thank you to everyone that has already activated their DAI on Give Together. Today we made needed changes to the contract. There was a bug that did not forward rDAI to the charities when sent to the contract. This has been fixed in this commit. In addition to the fix, a few new methods have been added, including one to transfer ownership of the contact is necessary.</description>
+    </item>
+    
+    <item>
+      <title>Introducing Give Together</title>
+      <link>https://lucaskohorst.com/posts/give-together/</link>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucaskohorst.com/posts/give-together/</guid>
+      <description>No Loss Charitable Donations powered by rDAI
+Give Together
+Give Together allows you to donate to a new charity each week all at no loss to you!
+Each week an Ethereum Smart Contract determines a new charity currently from this list (although we are open to adding more!). This week’s charity is Code for America and later today the interest generated will be redeemed to them (the contract became live on the mainnet last week).</description>
+    </item>
+    
+  </channel>
+</rss>

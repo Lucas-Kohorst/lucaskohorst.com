@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Lucas Kohorst">
+    
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ranking News Bias in Python"/>
+<meta name="twitter:description" content="I recently read an article in the Washington Post titled, “Ranking the media from liberal to conservative, based on their audiences”. Inspiring me to rank news sites based on their subjectivity and polarity on a given subject, in this case, Donald Trump.
+Photo by rawpixel on Unsplash
+I used Python to pull the following news sites for their 30 most recent articles that contained the keyword “Trump” (ranging from the liberal side of the Washington Post article to the conservative side):"/>
+
+    <meta property="og:title" content="Ranking News Bias in Python" />
+<meta property="og:description" content="I recently read an article in the Washington Post titled, “Ranking the media from liberal to conservative, based on their audiences”. Inspiring me to rank news sites based on their subjectivity and polarity on a given subject, in this case, Donald Trump.
+Photo by rawpixel on Unsplash
+I used Python to pull the following news sites for their 30 most recent articles that contained the keyword “Trump” (ranging from the liberal side of the Washington Post article to the conservative side):" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucaskohorst.com/posts/ranking-news-bias-in-python/" />
+<meta property="article:published_time" content="2018-07-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-21T00:00:00+00:00" />
+
+
+    
+      <base href="https://lucaskohorst.com/posts/ranking-news-bias-in-python/">
+    
+    <title>
+  Ranking News Bias in Python · Home | Lucas Kohorst
+</title>
+
+    
+      <link rel="canonical" href="https://lucaskohorst.com/posts/ranking-news-bias-in-python/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://lucaskohorst.com/css/coder.min.a4f332213a21ce8eb521670c614470c58923aaaf385e2a73982c31dd7642decb.css" integrity="sha256-pPMyITohzo61IWcMYURwxYkjqq84XipzmCwx3XZC3ss=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://lucaskohorst.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.64.1" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-auto">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://lucaskohorst.com/">
+      Home | Lucas Kohorst
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/projects/">Projects</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Ranking News Bias in Python</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-07-21T00:00:00Z'>
+                July 21, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              5-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://lucaskohorst.com/tags/python/">Python</a>
+      <span class="separator">•</span>
+    <a href="https://lucaskohorst.com/tags/news/">News</a>
+      <span class="separator">•</span>
+    <a href="https://lucaskohorst.com/tags/bias/">Bias</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>I recently read an article in the Washington Post titled, <a href="https://www.washingtonpost.com/news/the-fix/wp/2014/10/21/lets-rank-the-media-from-liberal-to-conservative-based-on-their-audiences/?noredirect=on&amp;utm_term=.592ab216ff0a">“Ranking the
+media from liberal to conservative, based on their
+audiences”</a>.
+Inspiring me to rank news sites based on their subjectivity and polarity
+on a given subject, in this case, Donald Trump.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*QZjMmT95qmq9SojCCI2NFQ.jpeg" alt=""></p>
+<p>Photo by
+<a href="https://unsplash.com/photos/UrA0VtUAgmo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">rawpixel</a>
+on <a href="https://unsplash.com/search/photos/newspapers-bias?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+<p>I used Python to pull the following news sites for their 30 most recent
+articles that contained the keyword “Trump” (ranging from the liberal
+side of the Washington Post article to the conservative side):</p>
+<ol>
+<li>New Yorker</li>
+<li>NPR</li>
+<li>CNN</li>
+<li>Fox News</li>
+<li>Drudge Report</li>
+<li>Breitbart</li>
+</ol>
+<p>Then performed a text analysis on the description of the article to
+return a list of how subjective (or opinionated) an article was and the
+polarity (whether the author felt positively or negatively about the
+Trump). By doing this I could come up with a (very basic) ranking of the
+News Sites on how biased they are about our President and what their
+opinions of him are. With this, I could compare with the Post article to
+what political affiliation the news source is most associated with and
+which is the most biased.</p>
+<h3 id="e7cd" class="graf graf--h3 graf-after--p">Imports</h3>
+<p>To search google, I used <a href="https://github.com/MarioVilas/googlesearch">this
+library</a>,
+<a href="https://textblob.readthedocs.io/en/dev/">TextBlob</a> for text analysis
+and <a href="https://pypi.org/project/texttable/">TextTable</a> for displaying the
+results in the terminal.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">from google import googlefrom textblob import TextBlobimport texttable as ttfrom time import sleep
+</code></pre></div><h3 id="2a62" class="graf graf--h3 graf-after--pre">Search</h3>
+<p>In order to get and analyze the articles from varying websites, I used
+<a href="https://whatis.techtarget.com/definition/Google-dorkhttps://whatis.techtarget.com/definition/Google-dork">Google Dork
+searches</a>
+which allow you to search a specific website for keywords (among many
+other things). For example you can type</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">inurl:medium.com intext:python
+</code></pre></div><p>In order to return search results just from the Medium website that
+mention python.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*tOjIR9PttCqHzpsmZSAR-g.png" alt=""></p>
+<p>I created a function called <code>search</code>{.markup&ndash;code .markup&ndash;p-code}
+which takes the arguments of the site you are searching and the keyword
+to search. Then setting the variable <code>search_results</code>{.markup&ndash;code
+.markup&ndash;p-code} to the Google Dork search that uses the site and
+keyword parameters, we can collect the articles.</p>
+<p>I then created a <code>search_results_list</code>{.markup&ndash;code .markup&ndash;p-code},
+<code>subjectivity_list</code>{.markup&ndash;code .markup&ndash;p-code}, and a
+<code>polarity_list</code>{.markup&ndash;code .markup&ndash;p-code} to append the results to
+later. Creating the <code>num</code>{.markup&ndash;code .markup&ndash;p-code} list is simply
+to have the articles numbered as they appear in the text table.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def search(site, search): site = site search = search num_page = 3 search_results = google.search(“inurl:” + site + “ intext:” + search, 3) search_results_list = [] subjectivity_list = [] polarity_list = [] num = [] number = 1
+</code></pre></div><h3 id="a0ce" class="graf graf--h3 graf-after--pre">Sentiment Analysis</h3>
+<p>The next step is to determine the subjectivity and polarity of a given
+article. This can be done by calling the
+<code>result.description</code>{.markup&ndash;code .markup&ndash;p-code} method on the search
+result, and then appending that to the
+<code>search_results_list.</code>{.markup&ndash;code .markup&ndash;p-code}</p>
+<p>By setting up TextBlob with the <code>search_results</code>{.markup&ndash;code
+.markup&ndash;p-code} as its argument as a variable <code>analysis</code>{.markup&ndash;code
+.markup&ndash;p-code} you perform basic sentiment analysis on the articles.
+Run <code>analysis.sentiment.subjectivity</code>{.markup&ndash;code .markup&ndash;p-code} to
+get the subjectivity for the results and
+<code>analysis.sentiment.polarity</code>{.markup&ndash;code .markup&ndash;p-code} to return
+the polarity. Append these results to their respective lists.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for result in search_results: search_results = result.description search_results_list.append(search_results)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"> analysis = TextBlob(search_results) subjectivity = analysis.sentiment.subjectivity subjectivity_list.append(subjectivity) polarity = analysis.sentiment.polarity polarity_list.append(polarity) number = number + 1 num.append(number) sleep(5)
+</code></pre></div><h3 id="b003" class="graf graf--h3 graf-after--pre">Text Table</h3>
+<p>In order to create the table, make a new variable <code>tab</code>{.markup&ndash;code
+.markup&ndash;p-code} and set it equal to <code>tt.Texttable()</code>{.markup&ndash;code
+.markup&ndash;p-code}. Then write out your headings, I used Number, Results,
+Subjectivity, and Polarity.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">tab = tt.Texttable()headings = [‘Number’,’Results’,’Subjectivity’, ‘Polarity’]tab.header(headings)
+</code></pre></div><p>Then run a <code>for</code>{.markup&ndash;code .markup&ndash;p-code} loop to add each element
+of the lists as a row to your table.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for row in zip(num, search_results_list, subjectivity_list, polarity_list): tab.add_row(row)
+</code></pre></div><p>Taking the subjectivity and polarity list we can find the average of
+each news source, which we can then print out along with the given site,
+search results and table.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">avg_subjectivity = (sum(subjectivity_list) / len(subjectivity_list))avg_polarity = (sum(polarity_list) / len(polarity_list))
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">table = tab.draw()print siteprint searchprint tableprint (site + “ average subjectivity: “ + str(avg_subjectivity))print (site + “ average polarity: “ + str(avg_polarity))
+</code></pre></div><h3 id="a9c5" class="graf graf--h3 graf-after--pre">Calling the Function</h3>
+<p>Finally you must call the <code>search</code>{.markup&ndash;code .markup&ndash;p-code}
+function for each news site.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">search(“newyorker”, “trump”)search(“npr”, “trump”)search(“cnn”, “trump”)search(“foxnews”, “trump”)search(“drudgereport”, “trump”)search(“breitbart”, “trump”)
+</code></pre></div><p>And thats it!</p>
+<h3 id="f551" class="graf graf--h3 graf-after--p">Results</h3>
+<p>Running the script the terminal output will look something like this:</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*zmrQTiyME5bU81K1GfzWvA.png" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*5YnCHuo9yotpc_UYUd5b3Q.png" alt=""></p>
+<p>Displaying the site, the number of the article, article description, the
+subjectivity and polarity for each article and then the average for the
+site.</p>
+<p>The averages for the site’s respective subjectivity are as follows (in
+order from most objective to most subjective):</p>
+<ol>
+<li>NPR (0.21)</li>
+<li>Fox News (0.23)</li>
+<li>CNN (0.25)</li>
+<li>The New Yorker (0.27)</li>
+<li>Breitbart (0.34)</li>
+<li>Drudge Report (0.36)</li>
+</ol>
+<p>No surprise that NPR is the most objective news source and that Drudge
+Report and Breitbart are the most opinionated on the subject of Trump.
+However, the fact that Fox News ranked 2nd in objectiveness surprised
+me.</p>
+<p>The rankings for the polarity where equally as surprising, the closer
+the value is to -1 the more negative and closer to 1 the more positive.</p>
+<ol>
+<li>Fox News (0.04)</li>
+<li>NPR (0.05)</li>
+<li>CNN (0.07)</li>
+<li>The New Yorker (0.07)</li>
+<li>Drudge Report (0.11)</li>
+<li>Breitbart (0.12)</li>
+</ol>
+<p>Once again Fox News surprised me as the had the most negative sentiment
+towards Trump over 30 articles. After that, the news sources fall in
+line as expected. It was very interesting to see that the highest
+positive average was barely above zero! I expected Drudge Report and
+Breitbart to be at least in the 0.6 range.</p>
+<p>Breitbart recorded the most positive sentiment of 0.8 on an article,
+however, it also had the most negative sentiment at -0.4. This leads me
+to believe that Breitbart articles use far more connotative language
+than its counterparts. Which is supported by the fact that Breitbart
+ranks 2nd in subjectivity.</p>
+<h3 id="2642" class="graf graf--h3 graf-after--p">Final Thoughts</h3>
+<p>Obviously, this was a very basic ranking and shouldn’t be taken as
+truth, due to an extremely small and limited (only using the
+description, not the full-length article) data set.</p>
+<p>I saw the Post’s article and figured this would be a fun experiment to
+run and see the results. Hope you enjoyed!</p>
+<p><a href="https://github.com/Lucas-Kohorst/News-Bias">Here is the full source code on
+Github</a></p>
+<p>Check out my other Python articles:</p>
+<p><a href="https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607" title="https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607"><strong>Create a Twitter Bot in Python Using Tweepy</strong><br>
+*With about 15% of Twitter being composed of bots, I wanted to try my
+hand at it. I googled how to create a Twitter
+bot…*medium.freecodecamp.org</a>[](<a href="https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607">https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607</a>)</p>
+<p><a href="https://medium.freecodecamp.org/basic-data-analysis-on-twitter-with-python-251c2a85062e" title="https://medium.freecodecamp.org/basic-data-analysis-on-twitter-with-python-251c2a85062e"><strong>Basic data analysis on Twitter with Python</strong><br>
+*After creating the Free Wtr bot using Tweepy and Python and this code,
+I wanted a way to see how Twitter users
+were…*medium.freecodecamp.org</a>[](<a href="https://medium.freecodecamp.org/basic-data-analysis-on-twitter-with-python-251c2a85062e">https://medium.freecodecamp.org/basic-data-analysis-on-twitter-with-python-251c2a85062e</a>)</p>
+<p>By <a href="https://medium.com/@lucaskohorst">Lucas Kohorst</a> on <a href="https://medium.com/p/e9bb5d1ba93f">July 21,
+2018</a>.</p>
+<p><a href="https://medium.com/@lucaskohorst/ranking-news-bias-in-python-e9bb5d1ba93f">Canonical
+link</a></p>
+<p>Exported from <a href="https://medium.com">Medium</a> on March 5, 2020.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Hosted on <a href='https://ipfs.io' target='_blank'>IPFS</a></p>
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+    
+
+  </body>
+
+</html>

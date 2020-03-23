@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Big Data on Lucas Kohorst</title>
+    <link>http://www.lucaskohorts.com/tags/big-data/</link>
+    <description>Recent content in Big Data on Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 21 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.lucaskohorts.com/tags/big-data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Transparency in an Un-Private Internet</title>
+      <link>http://www.lucaskohorts.com/posts/data-transparency/</link>
+      <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/data-transparency/</guid>
+      <description>The information age has revolutionized the way we interact, communicate and are perceived. In the United States, approximately 90 percent of the population is on the internet, using Facebook and Google to catch up with high school friends and to answer their questions. Companies such as Google constantly collect data on search habits of the user and what they like, in order to provide more personalized results and to improve their company.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Lucas Kohorst">
+    
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Twitter Data Analysis"/>
+<meta name="twitter:description" content="After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib."/>
+
+    <meta property="og:title" content="Twitter Data Analysis" />
+<meta property="og:description" content="After creating the Free Wtr bot using Tweepy and Python and this code, I wanted a way to see how Twitter users were perceiving the bot and what their sentiment was. So I created a simple data analysis program that takes a given number of tweets, analyzes them, and displays the data in a scatter plot.
+Image credit.
+Setup I had to install a few packages to create this: Tweepy, Tkinter, Textblob and matplotlib." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucaskohorst.com/posts/data-analysis-in-python/" />
+<meta property="article:published_time" content="2018-06-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-22T00:00:00+00:00" />
+
+
+    
+      <base href="https://lucaskohorst.com/posts/data-analysis-in-python/">
+    
+    <title>
+  Twitter Data Analysis · Home | Lucas Kohorst
+</title>
+
+    
+      <link rel="canonical" href="https://lucaskohorst.com/posts/data-analysis-in-python/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://lucaskohorst.com/css/coder.min.a4f332213a21ce8eb521670c614470c58923aaaf385e2a73982c31dd7642decb.css" integrity="sha256-pPMyITohzo61IWcMYURwxYkjqq84XipzmCwx3XZC3ss=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://lucaskohorst.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://lucaskohorst.com/img/favicon.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.64.1" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-auto">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://lucaskohorst.com/">
+      Home | Lucas Kohorst
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://lucaskohorst.com/projects/">Projects</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Twitter Data Analysis</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-06-22T00:00:00Z'>
+                June 22, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              5-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://lucaskohorst.com/tags/python/">Python</a>
+      <span class="separator">•</span>
+    <a href="https://lucaskohorst.com/tags/data-analysis/">Data Analysis</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>After creating the <a href="https://twitter.com/freewtr">Free Wtr</a> bot using
+Tweepy and Python and <a href="https://medium.freecodecamp.org/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607">this
+code</a>,
+I wanted a way to see how Twitter users were perceiving the bot and what
+their sentiment was. So I created a simple data analysis program that
+takes a given number of tweets, analyzes them, and displays the data in
+a scatter plot.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*SsrUI-q_kWKPd-HKmcRNvg.png" alt=""></p>
+<p>Image
+<a href="https://pixabay.com/en/facebook-analytics-graphs-2265786/">credit</a>.</p>
+<h3 id="5aff" class="graf graf--h3 graf-after--figure">Setup</h3>
+<p>I had to install a few packages to create this: <strong>Tweepy</strong>, <strong>Tkinter</strong>,
+<strong>Textblob</strong> and <strong>matplotlib</strong>. You can install each of these with the
+pip package manager. For example:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">pip install tweepy
+</code></pre></div><p>or you can clone into the Github repository like this.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git clone https://github.com/sloria/textblobcd textblobpython setup.py install
+</code></pre></div><p>Next you will need to create a new <strong>Python</strong> file and import the
+following packages.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">import tweepy #The Twitter APIfrom Tkinter import * #For the GUIfrom time import sleepfrom datetime import datetimefrom textblob import TextBlob #For Sentiment Analysisimport matplotlib.pyplot as plt #For Graphing the Data
+</code></pre></div><h3 id="d7be" class="graf graf--h3 graf-after--pre">Twitter Credentials</h3>
+<p>Now we need to link a Twitter account to our script. If you don’t have
+one already, create one.</p>
+<p>Go to <a href="https://apps.twitter.com/">apps.twitter.com</a> and sign in with
+your account. Create a Twitter application and generate a Consumer Key,
+Consumer Secret, Access Token, and Access Token Secret.</p>
+<p>Under your import statements, store your credentials in variables and
+then use the second block of code to authenticate your account with
+Tweepy.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">consumer_key = &#39;consumer key&#39;consumer_secret = &#39;consumer secrets&#39;access_token = &#39;access token&#39;access_token_secret = &#39;access token secret&#39;
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">auth = tweepy.OAuthHandler(consumer_key, consumer_secret)auth.set_access_token(access_token, access_token_secret)api = tweepy.API(auth)
+</code></pre></div><p>If you want to test to see if your account is properly authenticated,
+you could simply print your username to the console.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">user = api.me()print (user.name)
+</code></pre></div><h3 id="a97d" class="graf graf--h3 graf-after--pre">Creating the GUI</h3>
+<p>For the interface, we will use two labels: one for the <strong>search</strong> and
+the other for the <strong>sample size</strong> or number of tweets to be analyzed. We
+will also need a submit button so that when clicked, we can call our
+<code>getData</code>{.markup&ndash;code .markup&ndash;p-code} function.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">root = Tk()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label1 = Label(root, text=&#34;Search&#34;)E1 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label2 = Label(root, text=&#34;Sample Size&#34;)E2 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">submit = Button(root, text =&#34;Submit&#34;, command = getData)
+</code></pre></div><p>So that the computer knows to keep the GUI on the screen, we need to
+<strong>pack</strong> our labels and then <strong>loop</strong> the root display.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label1.pack()E1.pack()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label2.pack()E2.pack()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">submit.pack(side =BOTTOM)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">root.mainloop()
+</code></pre></div><p>Simply running this code, you should see a window that looks something
+like this:</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*MPxXav3xD3vfbRDyykXSPw.png" alt=""></p>
+<p>However when text is input into the labels or the <strong>submit</strong> button is
+clicked, nothing happens. We have to collect the data.</p>
+<h3 id="7abd" class="graf graf--h3 graf-after--p">Analyzing Tweets</h3>
+<p>First, we have to get the text input into the labels.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def getE1():    return E1.get()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def getE2():    return E2.get()
+</code></pre></div><p>Now we are ready to code the <code>getData</code>{.markup&ndash;code .markup&ndash;p-code}
+function. From now on, all code is in this function:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def getData():    #Code
+</code></pre></div><p>We need to use the <code>GetE1()</code>{.markup&ndash;code .markup&ndash;p-code} and
+<code>GetE2()</code>{.markup&ndash;code .markup&ndash;p-code} functions. These store our
+<strong>search</strong>and <strong>sample size</strong> in variables that we can loop through.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">getE1()    keyword = getE1()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">getE2()    numberOfTweets = getE2()    numberOfTweets = int(numberOfTweets)
+</code></pre></div><p>In order to store our data, we can use lists. One list is for the
+polarity (or sentiment) of the tweets, and another for the number of the
+tweet (so that we can graph the data).</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">polarity_list = []    numbers_list = []    number = 1
+</code></pre></div><p>The number of tweets needs to be declared as 1 because the default value
+is 0.</p>
+<p>We can now begin to iterate through the tweets and analyze them. Using
+TextBlob, we can find the sentiment of each tweet and store it to a
+variable <code>polarity</code>{.markup&ndash;code .markup&ndash;p-code} . We can then append
+this variable to our <code>polarity_list</code>{.markup&ndash;code .markup&ndash;p-code}
+along with appending the number to our <code>number_list</code>{.markup&ndash;code
+.markup&ndash;p-code}.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">analysis = TextBlob(tweet.text)analysis = analysis.sentimentpolarity = analysis.polarity            polarity_list.append(polarity)            numbers_list.append(number)number = number + 1
+</code></pre></div><p>We take this code and, using a <code>for</code>{.markup&ndash;code .markup&ndash;p-code} loop
+and <code>try</code>{.markup&ndash;code .markup&ndash;p-code} statement, we iterate it over
+the number of tweets for the search <strong>keyword.</strong></p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for tweet in tweepy.Cursor(api.search, keyword, lang=&#34;en&#34;).items(numberOfTweets):        try:            analysis = TextBlob(tweet.text)            analysis = analysis.sentiment            polarity = analysis.polarity            polarity_list.append(polarity)            numbers_list.append(number)            number = number + 1
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">except tweepy.TweepError as e:            print(e.reason)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">except StopIteration:            break
+</code></pre></div><h3 id="87d1" class="graf graf--h3 graf-after--pre">Graphing Scatter Plot</h3>
+<p>In order to graph our scatter plot with **matplotlib,**we first have to
+define the axis</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">axes = plt.gca()axes.set_ylim([-1, 2])
+</code></pre></div><p>and then plot our lists of data.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">plt.scatter(numbers_list, polarity_list)
+</code></pre></div><p>Key information is shown in a box. In order to show the overall
+sentiment of the tweets we gathered, we calculate the average across all
+collected Tweets. Also, since we are displaying the sentiment at a
+specific time, we want to display the date and time.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">averagePolarity = (sum(polarity_list))/(len(polarity_list))averagePolarity = &#34;{0:.0f}%&#34;.format(averagePolarity * 100)time  = datetime.now().strftime(&#34;At: %H:%M\nOn: %m-%d-%y&#34;)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">plt.text(0, 1.25, &#34;Average Sentiment:  &#34; + str(averagePolarity) + &#34;\n&#34; + time, fontsize=12, bbox = dict(facecolor=&#39;none&#39;, edgecolor=&#39;black&#39;, boxstyle=&#39;square, pad = 1&#39;))
+</code></pre></div><p><img src="https://cdn-images-1.medium.com/max/800/1*tMqRJJ7yNHVUhi02q-M6cg.png" alt=""></p>
+<p>For the title, we can use this</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">plt.title(&#34;Sentiment of &#34; + keyword + &#34; on Twitter&#34;) plt.xlabel(&#34;Number of Tweets&#34;)plt.ylabel(&#34;Sentiment&#34;)
+</code></pre></div><p>and finally use <code>plot.show()</code>{.markup&ndash;code .markup&ndash;p-code} to display
+the graph.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*4AFmEsfKAa3jW0OKYL4BCw.png" alt=""></p>
+<h3 id="971a" class="graf graf--h3 graf-after--figure">Example</h3>
+<p>Testing this for my <a href="https://twitter.com/freewtr"><strong>Free Wtr</strong></a>****bot,
+the sentiment was sky high!</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*r1ZHyGN5tuWIW6AUjJ1Zvw.png" alt=""></p>
+<p>Sample Size of 250 Tweets</p>
+<p>as for <strong>Donald Trump,</strong> I cannot say the same:</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*_EUcoqrAaT32YGZR7izQ_w.png" alt=""></p>
+<hr>
+<p>Here is the <a href="https://github.com/Fidel-Willis/Twitter-Data">full source
+code</a> on Github.</p>
+<p>By <a href="https://medium.com/@lucaskohorst">Lucas Kohorst</a> on <a href="https://medium.com/p/d5fb7d42ebc7">June 22,
+2018</a>.</p>
+<p><a href="https://medium.com/@lucaskohorst/twitter-data-analysis-d5fb7d42ebc7">Canonical
+link</a></p>
+<p>Exported from <a href="https://medium.com">Medium</a> on March 5, 2020.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Hosted on <a href='https://ipfs.io' target='_blank'>IPFS</a></p>
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+    
+
+  </body>
+
+</html>

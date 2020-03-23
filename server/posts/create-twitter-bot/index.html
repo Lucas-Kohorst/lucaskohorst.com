@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Lucas Kohorst">
+    <meta name="description" content="Lucas Kohorsts personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Create a Twitter Bot in Python Using Tweepy"/>
+<meta name="twitter:description" content="With about 15% of Twitter being composed of bots, I wanted to try my hand at it. I googled how to create a Twitter bot and was brought to a cleanly laid out web app. It allowed you to create a bot that would like, follow, or retweet a tweet based on a keyword. The problem was that you could only create one bot for one function.
+So I decided to code a bot myself with Python and the Tweepy library."/>
+
+    <meta property="og:title" content="Create a Twitter Bot in Python Using Tweepy" />
+<meta property="og:description" content="With about 15% of Twitter being composed of bots, I wanted to try my hand at it. I googled how to create a Twitter bot and was brought to a cleanly laid out web app. It allowed you to create a bot that would like, follow, or retweet a tweet based on a keyword. The problem was that you could only create one bot for one function.
+So I decided to code a bot myself with Python and the Tweepy library." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.lucaskohorts.com/posts/create-twitter-bot/" />
+<meta property="article:published_time" content="2018-04-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-04-08T00:00:00+00:00" />
+
+
+    
+      <base href="http://www.lucaskohorts.com/posts/create-twitter-bot/">
+    
+    <title>
+  Create a Twitter Bot in Python Using Tweepy · Lucas Kohorst
+</title>
+
+    
+      <link rel="canonical" href="http://www.lucaskohorts.com/posts/create-twitter-bot/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="http://www.lucaskohorts.com/css/coder.min.a4f332213a21ce8eb521670c614470c58923aaaf385e2a73982c31dd7642decb.css" integrity="sha256-pPMyITohzo61IWcMYURwxYkjqq84XipzmCwx3XZC3ss=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="http://www.lucaskohorts.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="http://www.lucaskohorts.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://www.lucaskohorts.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.64.1" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-auto">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="http://www.lucaskohorts.com/">
+      Lucas Kohorst
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://www.lucaskohorts.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://www.lucaskohorts.com/projects/">Projects</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Create a Twitter Bot in Python Using Tweepy</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-04-08T00:00:00Z'>
+                April 8, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              6-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="http://www.lucaskohorts.com/tags/twitter/">Twitter</a>
+      <span class="separator">•</span>
+    <a href="http://www.lucaskohorts.com/tags/bot/">Bot</a>
+      <span class="separator">•</span>
+    <a href="http://www.lucaskohorts.com/tags/python/">Python</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>With about 15% of Twitter being composed of bots, I wanted to try my
+hand at it. I googled how to create a Twitter bot and was brought to a
+cleanly laid out web app. It allowed you to create a bot that would
+like, follow, or retweet a tweet based on a keyword. The problem was
+that you could only create one bot for one function.</p>
+<p>So I decided to code a bot myself with Python and the Tweepy library.</p>
+<h3 id="c1ed" class="graf graf--h3 graf-after--p">Setup</h3>
+<p>First, I downloaded Tweepy. You can do this using the pip package
+manager.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">pip install tweepy
+</code></pre></div><p>You can also clone the GitHub repository if you do not have pip
+installed.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git clone https://github.com/tweepy/tweepy.gitcd tweepypython setup.py install
+</code></pre></div><p>You’ll need to import Tweepy and Tkinter (for the GUI interface).</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">import tweepyimport Tkinter
+</code></pre></div><h3 id="21bb" class="graf graf--h3 graf-after--pre">Credentials</h3>
+<p>Next, we need to link our Twitter account to our Python script. Go to
+<a href="https://apps.twitter.com/">apps.twitter.com</a> and sign in with your
+account. Create a Twitter application and generate a Consumer Key,
+Consumer Secret, Access Token, and Access Token Secret. Now you are
+ready to begin!</p>
+<p>Under your import statements store your credentials within variables and
+then use the second block of code to authenticate your account with
+tweepy.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">consumer_key = &#39;consumer key&#39;consumer_secret = &#39;consumer secrets&#39;access_token = &#39;access token&#39;access_token_secret = &#39;access token secret&#39;
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">auth = tweepy.OAuthHandler(consumer_key, consumer_secret)auth.set_access_token(access_token, access_token_secret)api = tweepy.API(auth)
+</code></pre></div><p>In order to check if your program is working you could add:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">user = api.me()print (user.name)
+</code></pre></div><p>This should return the name of your Twitter account in the console.</p>
+<h3 id="8af7" class="graf graf--h3 graf-after--p">Building the Bot</h3>
+<p>This bot is meant to:</p>
+<ol>
+<li>Follow everyone following you.</li>
+<li>Favorite and Retweet a Tweet based on keywords.</li>
+<li>Reply to a user based on a keyword.</li>
+</ol>
+<p>Step one is the easiest, you simply <strong>loop</strong> through your followers and
+then follow each one.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for follower in tweepy.Cursor(api.followers).items():    follower.follow()    print (&#34;Followed everyone that is following &#34; + user.name)
+</code></pre></div><p>At this point in order to make sure your code is working you should log
+onto Twitter and watch as the people you’re following increase.</p>
+<p>From this point onwards, besides setting up and packing the labels in
+the GUI, I am coding everything**under the function
+<code>mainFunction()</code>{.markup&ndash;code .markup&ndash;p-code}.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def mainFunction():    #The code
+</code></pre></div><p>You might be able to see where this is going. In order to favorite or
+retweet a tweet we can use a for loop and a try statement like this:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">search = &#34;Keyword&#34;
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">numberOfTweets = &#34;Number of tweets you wish to interact with&#34;
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):    try:        tweet.retweet()        print(&#39;Retweeted the tweet&#39;)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    except tweepy.TweepError as e:        print(e.reason)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    except StopIteration:        break
+</code></pre></div><p>In order to favorite a tweet you can simply replace the</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">tweet.retweet()
+</code></pre></div><p>with</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">tweet.favorite()
+</code></pre></div><p>In order to reply to a user based on a keyword, we need to store the
+users username and twitter ID.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">tweetId = tweet.user.idusername = tweet.user.screen_name
+</code></pre></div><p>We can then loop through the tweets and update our status (tweet) at
+each user.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">phrase = &#34;What you would like your response tweet to say&#34;
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):            try:                tweetId = tweet.user.id                username = tweet.user.screen_name                api.update_status(&#34;@&#34; + username + &#34; &#34; + phrase, in_reply_to_status_id = tweetId)                print (&#34;Replied with &#34; + phrase)                       except tweepy.TweepError as e:                print(e.reason)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">           except StopIteration:                break
+</code></pre></div><p>If you want to only utilize the script through the terminal and update
+the code every time you wish to run it then you have completed your bot.</p>
+<h3 id="d387" class="graf graf--h3 graf-after--p">Creating the GUI</h3>
+<p>We can create a GUI application that will take our inputs of the keyword
+you would like to search for and whether or not you would like to
+favorite a tweet.</p>
+<p>We first need to initialize Tkinter and setup the layout.</p>
+<p>To create our user interface, we are going to have seven labels for
+search, number of tweets, and reply. Plus the questions do you want to
+reply, favorite, retweet the tweet, and follow the user.</p>
+<p>Remember the code below is <strong>outside</strong> and <strong>above</strong> our
+<code>mainFunction()</code>{.markup&ndash;code .markup&ndash;p-code}.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">root = Tk()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label1 = Label( root, text=&#34;Search&#34;)E1 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label2 = Label( root, text=&#34;Number of Tweets&#34;)E2 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label3 = Label( root, text=&#34;Response&#34;)E3 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label4 = Label( root, text=&#34;Reply?&#34;)E4 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label5 = Label( root, text=&#34;Retweet?&#34;)E5 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label6 = Label( root, text=&#34;Favorite?&#34;)E6 = Entry(root, bd =5)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label7 = Label( root, text=&#34;Follow?&#34;)E7 = Entry(root, bd =5)
+</code></pre></div><p>We also need to <strong>pack</strong> each label so that they show up and then call
+the root function in a loop so that it remains on the screen and doesn’t
+immediately close.</p>
+<p>The following is what <strong>packing</strong> the first label looks like. I packed
+all of the labels below the <code>mainFunction()</code>{.markup&ndash;code
+.markup&ndash;p-code}.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">label1.pack()E1.pack()
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">root.mainloop()
+</code></pre></div><p>If you only ran your GUI code, it should look something like this:</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*sMo1KjT_hWUfhf98IFAQUw.png" alt=""></p>
+<p>However, inputing text into the labels or clicking the submit button
+will do nothing at this point. As the interface is not yet connected to
+the code.</p>
+<p>In order to store the user input in the labels, we need to use
+the <code>.get()</code>{.markup&ndash;code .markup&ndash;p-code} function. I used individual
+functions for each label.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">def getE1():    return E1.get()
+</code></pre></div><p>Then in my <code>mainFunction()</code>{.markup&ndash;code .markup&ndash;p-code}, I called the
+function <code>getE1()</code>{.markup&ndash;code .markup&ndash;p-code} and stored the input
+into a variable. For E1 it looks like this:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">getE1()search = getE1()
+</code></pre></div><p>You must do this for every label. For the <code>numberOfTweets</code>{.markup&ndash;code
+.markup&ndash;p-code} label make sure to convert the input into an integer.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">getE2()numberOfTweets = getE2()numberOfTweets = int(numberOfTweets)
+</code></pre></div><p>For the last four labels (Reply, Favorite, Retweet and Follow), we need
+to check to see if the input from the user is “yes” or “no” in order to
+run that given function or not. This can be accomplished through <strong>if</strong>
+statements.</p>
+<p>This would be the code for the <strong>reply</strong> function:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">if reply == &#34;yes&#34;:
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    for tweet in tweepy.Cursor(api.search,     search).items(numberOfTweets):            try:                tweetId = tweet.user.id                username = tweet.user.screen_name                api.update_status(&#34;@&#34; + username + &#34; &#34; + phrase, in_reply_to_status_id = tweetId)                print (&#34;Replied with &#34; + phrase)                       except tweepy.TweepError as e:                print(e.reason)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">except StopIteration:                break
+</code></pre></div><p>For the favorite, retweet and follow functions simply replace the
+<strong>reply</strong> with “retweet”, “favorite” and “follow”. Then copy and paste
+the code you wrote above for each one underneath the <strong>if</strong>statement.</p>
+<p>Now we just need to add the <strong>submit</strong>button and tell it to call the
+<code>mainFunction()</code>{.markup&ndash;code .markup&ndash;p-code} and execute the code for
+our Twitter Bot. Again, don’t forget to pack it!</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">submit = Button(root, text =&#34;Submit&#34;, command = mainFunction)
+</code></pre></div><p>That’s it! After you run your bot script, a GUI application should run
+and you will be able to reply, retweet, favorite and follow users.</p>
+<hr>
+<p>With this Twitter Bot, I have created the account
+<a href="https://twitter.com/FreeWtr">FreeWtr</a> which advocates for use of
+filtered tap water over bottled water. Here is a screenshot of the
+profile.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*PONvGc-nH38lwuley7JoSg.png" alt=""></p>
+<p>Here is the <a href="https://github.com/Fidel-Willis/TwitterBot">full source
+code</a> on Github.</p>
+<p>By <a href="https://medium.com/@lucaskohorst">Lucas Kohorst</a> on <a href="https://medium.com/p/ac524157a607">April 8,
+2018</a>.</p>
+<p><a href="https://medium.com/@lucaskohorst/creating-a-twitter-bot-in-python-with-tweepy-ac524157a607">Canonical
+link</a></p>
+<p>Exported from <a href="https://medium.com">Medium</a> on March 5, 2020.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+    
+
+  </body>
+
+</html>

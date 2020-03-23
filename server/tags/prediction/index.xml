@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prediction on Lucas Kohorst</title>
+    <link>http://www.lucaskohorts.com/tags/prediction/</link>
+    <description>Recent content in Prediction on Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 09 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.lucaskohorts.com/tags/prediction/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Predicting Stock Prices with Python</title>
+      <link>http://www.lucaskohorts.com/posts/stock-predictions/</link>
+      <pubDate>Fri, 09 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.lucaskohorts.com/posts/stock-predictions/</guid>
+      <description>Investing in the stock market used to require a ton of capital and a broker that would take a cut from your earnings. Then Robinhood disrupted the industry allowing you to invest as little as $1 and avoid a broker altogether. Robinhood and apps like it have opened up investing to anyone with a connected device and gave non-investors the opportunity to profit from the newest tech start-up.
+“space gray iPhone X turned on” by rawpixel on Unsplash</description>
+    </item>
+    
+  </channel>
+</rss>

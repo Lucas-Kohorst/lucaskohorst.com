@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Language Technology on Home | Lucas Kohorst</title>
+    <link>https://lucaskohorst.com/tags/language-technology/</link>
+    <description>Recent content in Language Technology on Home | Lucas Kohorst</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://lucaskohorst.com/tags/language-technology/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Constituency vs. Dependency Parsing</title>
+      <link>https://lucaskohorst.com/posts/constituency-dependency-parsing/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucaskohorst.com/posts/constituency-dependency-parsing/</guid>
+      <description>Sentence parsing can be helpful in understanding the meaning, structure, and syntactical relationships in sentences. Two common types are dependency and constituency parsing which is also known as syntactical parsing. Dependency parsing is the process of defining the grammatical structure of a sentence by listing each word as a node and displaying links to its dependents. A constituency parsed tree displays the syntactic structure of a sentence using context-free grammar. Unlike dependency parsing which relies on dependency grammar.</description>
+    </item>
+    
+  </channel>
+</rss>
