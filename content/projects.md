@@ -4,22 +4,15 @@ slug = "projects"
 +++
 
 ## [Give Together](https://github.com/Give-Together/)
-**No Loss Charitable Donations - powered by rDai** 
-Donate to a new charity each week without spending any of your principal.  
-- [Blog Post](/posts/give-together/)
-- [Website](https://givetogether.app/)
-- [Dapp.com](https://www.dapp.com/dapp/give-together)
-- [Github](https://github.com/Give-Together)
-- [Twitter](https://twitter.com/givetogetherapp)
-- [Discord](https://discordapp.com/invite/4FnWFmu)
-- [Medium](https://medium.com/give-together)
+**No Loss Charitable Donations - powered by rDai**
+Donate to a new charity each week without spending any of your principal read more [here](/posts/give-together/)
 
 
 ## [IPFS Search Engine](https://github.com/Lucas-Kohorst/ipfs-search-engine)
 **IPFS**        
 Search the Distributed Web 🚀
 
-## [React Sentence Tree](https://github.com/Lucas-Kohorst/react-sentence-tree) 
+## [React Sentence Tree](https://github.com/Lucas-Kohorst/react-sentence-tree)
 **Language Technology**   
 React component to create a constituency and dependency tree diagrams. Read the blog post [here](/posts/constituency-dependency-parsing/)
 

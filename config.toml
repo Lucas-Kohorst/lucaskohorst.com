@@ -19,7 +19,7 @@ hidecredits=false
 [params]
     author = "Lucas Kohorst"
     keywords = "blog,developer,personal"
-    info = "Blockchain + Web Development"
+    info = "Blockchain at Foundry"
     footercontent = "Hosted on <a href='https://ipfs.io' target='_blank'>IPFS</a>"
 
     favicon_32 = "/img/favicon.png"
@@ -79,5 +79,3 @@ hidecredits=false
     name = "Projects"
     weight = 3
     url = "https://lucaskohorst.com/projects/"
-
-
